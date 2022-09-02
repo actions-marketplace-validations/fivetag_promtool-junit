@@ -1,0 +1,21 @@
+# action.yml
+name: "promtool-junit"
+description: "Testing alerting rules with JUnit output"
+branding:
+  icon: "check-circle"
+  color: "green"
+inputs:
+  path:
+    description: "PATH where to scan for test.yml files"
+    required: true
+    default: ""
+  test_file:
+    description: "File name with testing rules. Default: test.yaml"
+    required: false
+    default: "test.yaml"
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.path }}
+    - ${{ inputs.test_file }}
